@@ -4,7 +4,6 @@ import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import zahenta.dukesexcercise.databinding.PunchBinding
@@ -46,7 +45,6 @@ class Punch : FrameLayout {
                binding.punchInput.setText(newValue)
            }catch (e: Exception){
                binding.punchInput.setText("0")
-                Log.e("InputError", e.toString())
            }
        }
        binding.punchDownButton.setOnClickListener {
@@ -58,7 +56,6 @@ class Punch : FrameLayout {
                }
            }catch (e: Exception){
                binding.punchInput.setText("0")
-               Log.e("InputError", e.toString())
            }
        }
 
@@ -72,8 +69,8 @@ class Punch : FrameLayout {
                index = typedArray.getInt(R.styleable.Punch_index, -1);
 
            } catch (e: java.lang.Exception) {
-               Log.e("Duke Exercise", "An exception happened while trying to get attribute")
-               Log.e("Duke Exercise", e.toString())
+               binding.punchLabel.text = ""
+               index = -1;
            }
 
        }

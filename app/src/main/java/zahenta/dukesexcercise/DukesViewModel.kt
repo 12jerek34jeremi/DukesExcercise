@@ -2,7 +2,6 @@ package zahenta.dukesexcercise
 
 import android.app.Application
 import android.content.Context
-import android.util.Log
 import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.AndroidViewModel
 import org.json.JSONObject
@@ -28,9 +27,6 @@ class DukesViewModel(application: Application) : AndroidViewModel(application) {
             file.writeText(json.toString())
             true;
         } catch (e: java.lang.Exception) {
-            Log.i("Duke Exercise",
-                "An exception occurred while trying to save to cache file!\n$e"
-            )
             false;
         }
     }
@@ -51,9 +47,8 @@ class DukesViewModel(application: Application) : AndroidViewModel(application) {
                 }
             }
         }catch (e: java.lang.Exception) {
-            Log.i("Duke Exercise",
-                "An exception occurred while trying to save to cache file!\n$e"
-            )
+            frequencies= Array<String>(6){"1"}
+            activeButton = 1
         }
     }
 }

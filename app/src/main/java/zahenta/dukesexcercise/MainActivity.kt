@@ -1,7 +1,6 @@
 package zahenta.dukesexcercise
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import zahenta.dukesexcercise.databinding.ActivityMainBinding
@@ -29,12 +28,11 @@ class MainActivity : AppCompatActivity() {
                 binding.startButton.isEnabled = false
                 binding.stopButton.isEnabled = true
             }
-            Log.d("Testing", "Already prepared")
         }else{
             binding.startButton.isEnabled = false;
             binding.stopButton.isEnabled = false;
             model.activeButton = 1
-            soundPlayer.setOnPreparedListener { binding.startButton.isEnabled = true; Log.d("Testing", "All players prepared!")}
+            soundPlayer.setOnPreparedListener { binding.startButton.isEnabled = true;}
         }
 
         binding.startButton.setOnClickListener {
