@@ -1,9 +1,9 @@
-package zahenta.dukesexcercise
+package zahenta.dukesexercise
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import zahenta.dukesexcercise.databinding.ActivityMainBinding
+import zahenta.dukesexercise.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {

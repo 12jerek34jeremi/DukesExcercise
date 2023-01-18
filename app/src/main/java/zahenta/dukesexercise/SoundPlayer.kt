@@ -1,10 +1,8 @@
-package zahenta.dukesexcercise
+package zahenta.dukesexercise
 
 import android.content.res.AssetFileDescriptor
 import android.content.res.Resources
 import android.media.MediaPlayer
-import android.media.MediaPlayer.OnPreparedListener
-import android.util.Log
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 

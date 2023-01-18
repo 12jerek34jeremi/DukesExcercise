@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <zahenta.dukesexcercise.Punch
+    <zahenta.dukesexercise.Punch
         android:id="@+id/leftStraight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         custom:index="0"
         custom:text="lewy prosty" />
 
-    <zahenta.dukesexcercise.Punch
+    <zahenta.dukesexercise.Punch
         android:id="@+id/rightStraight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
         custom:index="1"
         custom:text="prawy prosty" />
 
-    <zahenta.dukesexcercise.Punch
+    <zahenta.dukesexercise.Punch
         android:id="@+id/leftHook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         custom:index="2"
         custom:text="lewy sierpowy" />
 
-    <zahenta.dukesexcercise.Punch
+    <zahenta.dukesexercise.Punch
         android:id="@+id/rightHook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
         custom:index="3"
         custom:text="prawy sierpowy" />
 
-    <zahenta.dukesexcercise.Punch
+    <zahenta.dukesexercise.Punch
         android:id="@+id/leftUppercut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
         custom:index="4"
         custom:text="lewy hak" />
 
-    <zahenta.dukesexcercise.Punch
+    <zahenta.dukesexercise.Punch
         android:id="@+id/rightUpperCut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

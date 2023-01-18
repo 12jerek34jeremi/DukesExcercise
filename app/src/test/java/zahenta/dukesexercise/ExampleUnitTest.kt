@@ -1,4 +1,4 @@
-package zahenta.dukesexcercise
+package zahenta.dukesexercise
 
 import org.junit.Test
 
