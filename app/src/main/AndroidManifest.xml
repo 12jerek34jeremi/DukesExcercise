@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/fist_icon_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.DukesExcercise"
+        android:theme="@style/Theme.DukesExercise"
         tools:targetApi="33">
         <activity
             android:name=".MainActivity"
