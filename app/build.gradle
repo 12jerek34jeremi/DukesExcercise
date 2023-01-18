@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'zahenta.dukesexcercise'
+    namespace 'zahenta.dukesexercise'
     compileSdk 33
 
     defaultConfig {
-        applicationId "zahenta.dukesexcercise"
+        applicationId "zahenta.dukesexercise"
         minSdk 26
         targetSdk 33
         versionCode 1
