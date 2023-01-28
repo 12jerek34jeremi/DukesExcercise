@@ -3,6 +3,8 @@ package zahenta.dukesexercise
 import android.content.res.AssetFileDescriptor
 import android.content.res.Resources
 import android.media.MediaPlayer
+import android.os.Handler
+import android.os.Looper
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 
@@ -12,12 +14,14 @@ class SoundPlayer(resources: Resources) {
         private set
 
     private val mediaPlayers: Array<MediaPlayer> = Array(6) { MediaPlayer() }
+    private val preparedArray : BooleanArray = BooleanArray(6){false}
+    private val handler : Handler = Handler(Looper.getMainLooper())
     private var onPreparedListener: (() -> Unit)? = null
-    private var preparedArray : BooleanArray = BooleanArray(6){false}
     private var shallIPlay : Boolean = false
     private var currentlyPlaying: Int = -1
     private var distribution : DoubleArray = DoubleArray(5){1.0/6.0}
     private var generator: Random = Random(0)
+    private var interval: Long = 0
 
     init {
 
@@ -43,8 +47,9 @@ class SoundPlayer(resources: Resources) {
     }
 
 
-    fun start(new_frequencies: IntArray){
+    fun start(new_frequencies: IntArray, interval: Double){
         generator = Random(Random.nextLong().absoluteValue)
+        this.interval = (interval*1000).toLong()
 
         if(currentlyPlaying < 0){
             countDistribution(new_frequencies);
@@ -54,15 +59,15 @@ class SoundPlayer(resources: Resources) {
     }
 
     fun stop(){
+        handler.removeCallbacksAndMessages(null);
         shallIPlay = false
-        if(currentlyPlaying >= 0){
-            val mp = mediaPlayers[currentlyPlaying]
-            if(mp.isPlaying){
+        for(mp in mediaPlayers){
+            if (mp.isPlaying) {
                 mp.pause()
                 mp.seekTo(0)
             }
-            currentlyPlaying = -1;
         }
+        currentlyPlaying = -1;
     }
 
     private fun play(){
@@ -89,7 +94,11 @@ class SoundPlayer(resources: Resources) {
 
         override fun onCompletion(mp: MediaPlayer?){
             mp?.seekTo(0)
-            play()
+            if(interval > 0){
+                handler.postDelayed({play()}, interval);
+            }else{
+                play()
+            }
         }
     }
 

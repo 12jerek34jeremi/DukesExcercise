@@ -11,6 +11,7 @@ class DukesViewModel(application: Application) : AndroidViewModel(application) {
     var frequencies: Array<String> = Array<String>(6){"1"}
     val soundPlayer: SoundPlayer = SoundPlayer(getApplication<Application>().resources)
     var activeButton: Int = 1 //1 for startButton active, 2 for stopButtonActive
+    var interval: String = "1.0";
 
     init{
         readCache()
@@ -20,6 +21,7 @@ class DukesViewModel(application: Application) : AndroidViewModel(application) {
         val json: JSONObject = JSONObject()
         json.put("frequencies", frequencies.joinToString(separator = ",",
             postfix = "]", prefix = "["))
+        json.put("interval", interval)
         val context: Context = getApplication<Application>().applicationContext
 
         return try{
@@ -37,9 +39,11 @@ class DukesViewModel(application: Application) : AndroidViewModel(application) {
         try{
             val cacheFile: File = File(context.cacheDir, "frequencies.json")
             if(cacheFile.exists()){
-                val frequenciesText : String = JSONObject(cacheFile.readText()).getString("frequencies")
+                val json: JSONObject = JSONObject(cacheFile.readText())
+                val frequenciesText : String = json.getString("frequencies")
                 val frequenciesList = frequenciesText.substring(1, frequenciesText.length-1).split(",")
 
+                interval = json.getString("interval")
                 if(frequenciesList.size == 6 && frequenciesList.all({ it.isDigitsOnly() })){
                     frequencies = frequenciesList.toTypedArray();
                 }else{
@@ -49,6 +53,7 @@ class DukesViewModel(application: Application) : AndroidViewModel(application) {
         }catch (e: java.lang.Exception) {
             frequencies= Array<String>(6){"1"}
             activeButton = 1
+            interval = "1.0"
         }
     }
 }

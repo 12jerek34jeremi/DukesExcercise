@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        binding.model = model;
         punches = createPunchesArray(binding)
         soundPlayer = model.soundPlayer
 
@@ -37,10 +38,17 @@ class MainActivity : AppCompatActivity() {
 
         binding.startButton.setOnClickListener {
             val frequencies = IntArray(6){1}
+            var interval: Double = 1.0
             try {
                 for(i in 0..5){
-                    frequencies[i] = Integer.parseInt(punches[i].frequency)
+                    val frequency = Integer.parseInt(punches[i].frequency)
+                    if(frequency<0)
+                        frequencies[i] = 0
+                    else
+                        frequencies[i] = frequency
                 }
+                interval = binding.intervalTime.text.toString().toDouble()
+                if(interval<0) interval = 0.0
             }catch (e: Exception){
                 for( i in 0..5){
                     frequencies[i] = 1;
@@ -48,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 model.save()
             }
-            soundPlayer.start(frequencies)
+            soundPlayer.start(frequencies, interval)
             model.activeButton = 2
             binding.stopButton.isEnabled = true
             binding.startButton.isEnabled = false
@@ -72,8 +80,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun createPunchesArray(binding: ActivityMainBinding): Array<Punch>{
         val punches = mutableListOf<Punch>()
-        for(i in 0 until binding.root.childCount){
-            val child = binding.root.getChildAt(i)
+        for(i in 0 until binding.rootLayout.childCount){
+            val child = binding.rootLayout.getChildAt(i)
             if(child is Punch){
                 child.trackFrequency(model.frequencies)
                 punches.add(child)
